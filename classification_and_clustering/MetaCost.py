@@ -5,7 +5,7 @@ from sklearn.base import clone
 
 class MetaCost(object):
     """
-    Implementazione del meta-algoritmo MetaCost (Domingos, 1999), che rende un
+    Implementazione del meta-algoritmo MetaCost, che rende un
     classificatore sensibile ai costi d'errore tramite rietichettatura del training
     basata su un ensemble bootstrap.
 
