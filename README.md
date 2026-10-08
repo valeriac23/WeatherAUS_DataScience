@@ -128,7 +128,7 @@ Passi:
 1. Clona il repository:
    ```bash
    git clone https://github.com/valeriac23/WeatherAUS_DataScience.git
-   cd WeatherAUS_DataScience_Project
+   cd WeatherAUS_DataScience
    ```
 2. Scarica `weatherAUS.csv` da Kaggle e mettilo nella cartella `dataset/` nella root del progetto. I notebook la cercano automaticamente risalendo dalla cartella corrente.
 3. Avvia Jupyter ed esegui i notebook nell'ordine consigliato:
