@@ -1,4 +1,4 @@
-# WeatherAUS — Data Science Project
+# WeatherAUS — Data Science 
 
 Progetto di Data Science sul dataset **Rain in Australia (WeatherAUS)**. Un unico dataset meteorologico viene affrontato con tre famiglie di tecniche: **classificazione**, **clustering** e **analisi di serie temporali**. In ogni analisi il protocollo sperimentale è pensato per evitare risultati ottimistici (leakage temporale, selezione sul test, scenari non realizzabili).
 
@@ -32,15 +32,14 @@ WeatherAUS_DataScience_Project/
 │   ├── B_base_norid_classification.ipynb            # Classificazione, configurazione B
 │   ├── C_rec_var_corr_classification.ipynb          # Classificazione, configurazione C
 │   ├── D_reparam_collinearity_classification.ipynb  # Classificazione, configurazione D (modello finale)
-│   ├── ablation.json                              # Risultati delle 4 configurazioni (generato dai notebook)
+│   ├── ablation.json                              # Creato all'esecuzione dei notebook A–D
 │   ├── MetaCost.py                                # Implementazione dell'algoritmo MetaCost
 │   └── clustering.ipynb                           # Clustering dei regimi meteorologici
 ├── temporal_series/
 │   └── time_series.ipynb                          # Serie temporali (SARIMA) su Temp3pm a Sydney
 ├── dataset/                                       # weatherAUS.csv (da scaricare, non versionato)
 ├── Relazione_WeatherAUS.pdf                       # Relazione del progetto
-├── README.md
-└── .gitignore
+└── README.md
 ```
 
 `MetaCost.py` deve trovarsi nella stessa cartella dei notebook di classificazione, che lo importano.
@@ -86,8 +85,8 @@ Quattro notebook con **la stessa pipeline**, che differiscono solo per l'insieme
 - **Configurazione D (modello finale).** PR-AUC in CV 0,741 (0,744 dopo l'ottimizzazione degli iperparametri). Sul test, con soglia 0,20: **ROC-AUC 0,886**, **PR-AUC 0,737**, **Recall 0,809**, Precision 0,534, **F1 0,643**.
 - **Costo atteso** ridotto del **42%** rispetto alla persistenza e del **17%** rispetto alla soglia di default 0,5.
 - **Ablazione.** Recupero di `Sunshine`/`Cloud3pm` e riparametrizzazione migliorano tutti i modelli. I guadagni sono però modesti, dello stesso ordine della variabilità fra i fold.
-- **Strategie per lo sbilanciamento** (regressione logistica, ultime 20 000 righe del training): nessun trattamento, `class_weight`, SMOTE, NearMiss+SMOTE, LDA, **MetaCost** e MetaCost+LDA. Ripesatura, SMOTE e MetaCost sono equivalenti. Il modello finale incorpora l'asimmetria dei costi nella calibrazione della soglia.
-- **Leakage temporale quantificato.** Uno split casuale sovrastima la PR-AUC di 2,3–3,1 punti, più dell'intero guadagno dello studio di ablazione.
+- **Strategie per lo sbilanciamento** (regressione logistica, ultime 20 000 righe del training): nessun trattamento, `class_weight`, SMOTE, NearMiss+SMOTE, LDA, **MetaCost** e MetaCost+LDA. Ripesatura, SMOTE e MetaCost sono equivalenti. Il modello finale non applica né ricampionamento né ripesatura (scale_pos_weight = 1) e incorpora l'asimmetria dei costi nella calibrazione della soglia.
+- **Leakage temporale quantificato.** Uno split casuale sovrastima la PR-AUC di 2,3–3,0 punti, più dell'intero guadagno dello studio di ablazione.
 - **Permutation importance.** Dominano l'umidità pomeridiana, le raffiche di vento e la pressione.
 
 ### 3. Clustering: regimi meteorologici
@@ -128,7 +127,7 @@ Passi:
 
 1. Clona il repository:
    ```bash
-   git clone https://github.com/valeriac23/WeatherAUS_DataScience_Project.git
+   git clone https://github.com/valeriac23/WeatherAUS_DataScience.git
    cd WeatherAUS_DataScience_Project
    ```
 2. Scarica `weatherAUS.csv` da Kaggle e mettilo nella cartella `dataset/` nella root del progetto. I notebook la cercano automaticamente risalendo dalla cartella corrente.
@@ -141,7 +140,7 @@ Passi:
    jupyter notebook
    ```
 
-Tutti i risultati sono riproducibili: il seed è fissato (`RANDOM_STATE = 42`) in ogni notebook, incluso il bootstrap di MetaCost.
+Tutti i risultati sono riproducibili: nei notebook con componenti casuali (classificazione e clustering) il seed è fissato (RANDOM_STATE = 42), incluso il bootstrap di MetaCost.
 
 ---
 
