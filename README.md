@@ -28,10 +28,10 @@ I dati provengono dal dataset pubblico **[Rain in Australia](https://www.kaggle.
 WeatherAUS_DataScience_Project/
 ├── classification_and_clustering/
 │   ├── eda_data_analysis.ipynb                    # Analisi esplorativa (EDA)
-│   ├── baseline_classification.ipynb              # Classificazione, configurazione A
-│   ├── base_norid_classification.ipynb            # Classificazione, configurazione B
-│   ├── rec_var_corr_classification.ipynb          # Classificazione, configurazione C
-│   ├── reparam_collinearity_classification.ipynb  # Classificazione, configurazione D (modello finale)
+│   ├── A_baseline_classification.ipynb              # Classificazione, configurazione A
+│   ├── B_base_norid_classification.ipynb            # Classificazione, configurazione B
+│   ├── C_rec_var_corr_classification.ipynb          # Classificazione, configurazione C
+│   ├── D_reparam_collinearity_classification.ipynb  # Classificazione, configurazione D (modello finale)
 │   ├── ablation.json                              # Risultati delle 4 configurazioni (generato dai notebook)
 │   ├── MetaCost.py                                # Implementazione dell'algoritmo MetaCost
 │   └── clustering.ipynb                           # Clustering dei regimi meteorologici
